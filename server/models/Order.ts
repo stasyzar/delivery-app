@@ -7,9 +7,8 @@ const OrderSchema = new mongoose.Schema({
     phone: { type: String, required: true },
     address: { type: String, required: true }
   },
-  items: Array, // Список обраних страв
-  totalPrice: { type: Number, required: true },
-  createdAt: { type: Date, default: Date.now }
+  items: Array, 
+  totalPrice: { type: Number, required: true }
 });
 
 export const Order = mongoose.model('Order', OrderSchema);
