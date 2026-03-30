@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useCart } from '../CartContext';
-import './CartPage.css'; // Імпортуємо файл стилів, який створимо наступним кроком
+import './CartPage.css';
 
 const CartPage: React.FC = () => {
   const { cart, updateQuantity, removeFromCart, totalPrice, clearCart } = useCart();
@@ -14,41 +14,57 @@ const CartPage: React.FC = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Використовуємо атрибут name інпуту для оновлення стану
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Базова валідація згідно з вимогами проекту
-    if (!formData.name || !formData.email || !formData.phone || !formData.address) {
-      alert("Будь ласка, заповніть всі поля форми!");
-      return;
-    }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\+380\d{9}$/; 
 
-    const order = {
-      customer: formData,
-      items: cart,
-      totalPrice: totalPrice
-    };
+  if (!formData.name.trim() || formData.name.length < 2) {
+    alert("Будь ласка, введіть коректне ім'я (мінімум 2 символи).");
+    return;
+  }
 
-    try {
-      const response = await axios.post('http://localhost:5000/api/orders', order);
-      alert(response.data.message);
-      clearCart(); // Очищуємо кошик після успішного замовлення
-      setFormData({ name: '', email: '', phone: '', address: '' }); // Очищуємо форму
-    } catch (error) {
-      console.error("Помилка при відправці:", error);
-      alert("Виникла помилка при оформленні замовлення.");
-    }
+  if (!emailRegex.test(formData.email)) {
+    alert("Введіть правильну e-mail адресу (наприклад, user@mail.com).");
+    return;
+  }
+
+  if (!phoneRegex.test(formData.phone)) {
+    alert("Номер телефону має бути у форматі +380XXXXXXXXX (12 цифр).");
+    return;
+  }
+
+  if (!formData.address.trim() || formData.address.length < 10) {
+    alert("Будь ласка, вкажіть повну адресу доставки.");
+    return;
+  }
+
+  const order = {
+    customer: formData,
+    items: cart,
+    totalPrice: totalPrice
   };
+
+  try {
+    const response = await axios.post('http://localhost:5000/api/orders', order);
+    alert(response.data.message);
+    clearCart();
+    setFormData({ name: '', email: '', phone: '', address: '' });
+  } catch (error) {
+    console.error("Помилка при відправці:", error);
+    alert("Виникла помилка при оформленні замовлення.");
+  }
+};
 
   return (
     <div className="cart-page">
       <form className="order-form" onSubmit={handleSubmit}>
-        {/* Ліва частина: Дані користувача */}
+        {}
         <section className="user-info">
           <h3>Contact Information:</h3>
           <div className="form-group">
@@ -69,7 +85,7 @@ const CartPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Права частина: Список товарів */}
+        {}
         <section className="cart-items">
           {cart.length === 0 ? (
             <div className="empty-cart-message">Your shopping cart is empty</div>

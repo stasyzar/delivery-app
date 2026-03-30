@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { type Shop } from '../types';
 import { useCart } from '../CartContext';
-import './ShopsPage.css'; // Імпортуємо майбутній файл стилів
+import './ShopsPage.css';
 
 const ShopsPage: React.FC = () => {
   const [shops, setShops] = useState<Shop[]>([]);
@@ -26,7 +26,7 @@ const ShopsPage: React.FC = () => {
 
   return (
     <div className="shops-container">
-      {/* Ліва панель: Список магазинів */}
+      {}
       <aside className="sidebar">
         <h3 className="sidebar-title">Shops:</h3>
         <div className="shops-list">
@@ -42,7 +42,7 @@ const ShopsPage: React.FC = () => {
         </div>
       </aside>
 
-      {/* Права панель: Товари обраного магазину */}
+      {}
       <section className="product-grid">
         {selectedShop ? (
           selectedShop.products.map(product => (
