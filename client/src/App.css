@@ -1,34 +1,66 @@
+/* ===== App.css ===== */
+
 .app-container {
-  font-family: sans-serif;
   max-width: 1200px;
   margin: 0 auto;
+  /* Займаємо повну висоту вікна і розкладаємо дітей по вертикалі */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* ---- Navbar ---- */
 .navbar {
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
+  padding: 0 28px;
+  height: 58px;
+  flex-shrink: 0; /* navbar не стискається */
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 6px;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-right: 16px;
+  letter-spacing: 0.01em;
 }
 
 .nav-link {
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: color 0.18s ease, background-color 0.18s ease;
 }
 
 .nav-link:hover {
-  color: #007bff;
+  color: var(--text);
+  background-color: var(--accent-light);
+}
+
+.nav-link.active {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 .divider {
-  color: #ccc;
-  font-size: 1.5rem;
+  color: var(--border);
+  font-size: 1.2rem;
+  user-select: none;
 }
 
+/* ---- Головний контент займає весь залишок висоти ---- */
 .main-content {
-  padding: 0 10px;
+  flex: 1;
+  min-height: 0; /* ключ — дозволяє дітям скролитись */
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
 }

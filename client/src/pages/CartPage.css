@@ -1,0 +1,293 @@
+/* ===== CartPage.css ===== */
+
+.cart-page {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Форма: два блоки поруч ---- */
+.order-form {
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---- Ліва панель: контактна інформація ---- */
+.user-info {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.user-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text);
+  background-color: var(--bg);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.form-group input::placeholder {
+  color: #b8b0a4;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.12);
+  background-color: var(--surface);
+}
+
+/* ---- Права панель: товари в кошику ---- */
+.cart-items {
+  flex: 1;
+  min-height: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---- Порожній кошик ---- */
+.empty-cart-message {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---- Список товарів — з прокруткою ---- */
+.items-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* ---- Картка одного товару ---- */
+.cart-item-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.cart-item-card:last-child {
+  border-bottom: none;
+}
+
+.item-image {
+  width: 100px;
+  height: 68px;
+  flex-shrink: 0; /* картинка не стискається */
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background-color: #e8e4de;
+}
+
+.item-details {
+  flex: 1;
+  min-width: 0; /* дозволяє тексту обрізатись, а не розширювати батька */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.item-details h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-price {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---- Кількість та кнопки ---- */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.quantity-controls button {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background-color: var(--bg);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.quantity-controls button:hover {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.quantity-controls button:active {
+  transform: scale(0.9);
+}
+
+.quantity-count {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 6px;
+}
+
+.remove-btn {
+  margin-left: auto;
+  background: none !important;
+  border: none !important;
+  color: var(--danger) !important;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-body);
+  padding: 4px 8px !important;
+  border-radius: 5px !important;
+  width: auto !important;
+  height: auto !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.remove-btn:hover {
+  background-color: var(--danger-light) !important;
+}
+
+/* ---- Футер: ціна і кнопка ---- */
+.cart-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 12px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-sum {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* ---- Submit кнопка з анімацією ---- */
+.submit-order-btn {
+  padding: 11px 36px;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.submit-order-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.submit-order-btn:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  box-shadow: 0 4px 14px rgba(45, 90, 61, 0.35);
+  transform: translateY(-1px);
+}
+
+.submit-order-btn:active:not(:disabled) {
+  transform: scale(0.97) translateY(0);
+  box-shadow: 0 2px 6px rgba(45, 90, 61, 0.25);
+}
+
+.submit-order-btn:active:not(:disabled)::before {
+  transform: scale(3);
+  opacity: 1;
+}
+
+.submit-order-btn:disabled {
+  background-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}

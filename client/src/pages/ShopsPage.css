@@ -1,0 +1,205 @@
+/* ===== ShopsPage.css ===== */
+
+.shops-container {
+  display: flex;
+  gap: 20px;
+  /* Займаємо весь доступний простір від батьківського flex-контейнера */
+  flex: 1;
+  min-height: 0; /* ключ — дозволяє flex-дітям не розтягувати батька */
+}
+
+/* ---- Ліва панель: список магазинів ---- */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sidebar-title {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  flex-shrink: 0; /* заголовок не стискається */
+}
+
+.shops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  padding-right: 2px;
+}
+
+.shop-button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  cursor: pointer;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  transition: all 0.18s ease;
+  flex-shrink: 0; /* кнопки не стискаються */
+}
+
+.shop-button:hover {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.shop-button.active {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(45, 90, 61, 0.3);
+}
+
+/* ---- Права панель: сітка товарів ---- */
+.product-grid {
+  flex: 1;
+  min-height: 0; /* ключ — дозволяє прокручуватись всередині */
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  overflow-y: auto;
+
+  /* 2 товари в рядок з фіксованою шириною колонок */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-content: start; /* картки не розтягуються вертикально */
+}
+
+.no-selection {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  min-height: 200px;
+}
+
+/* ---- Картка товару ---- */
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Фіксована висота — картка не стискається і не розтягується */
+  height: 260px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+}
+
+.product-image {
+  width: 100%;
+  height: 140px;
+  flex-shrink: 0; /* картинка НЕ стискається */
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+  background-color: #e8e4de;
+  display: block;
+}
+
+.product-info {
+  flex: 1;        /* займає решту місця в картці */
+  min-height: 0;  /* не виходить за межі картки */
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* рівномірно розподіляє текст і кнопку */
+  text-align: center;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  /* якщо назва довга — обрізаємо в 2 рядки */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-price {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---- Кнопка "add to Cart" ---- */
+.add-to-cart-btn {
+  padding: 7px 20px;
+  cursor: pointer;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.18s ease;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.add-to-cart-btn::after {
+  content: '✓ Added';
+  position: absolute;
+  inset: 0;
+  background-color: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+  transform: translateY(100%);
+  transition: transform 0.22s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.97);
+}
+
+.add-to-cart-btn.added::after {
+  transform: translateY(0%);
+}
