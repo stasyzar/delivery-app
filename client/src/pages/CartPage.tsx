@@ -39,7 +39,7 @@ const CartPage: React.FC = () => {
     return;
   }
 
-  if (!formData.address.trim() || formData.address.length < 10) {
+  if (!formData.address.trim() || formData.address.length < 5) {
     alert("Будь ласка, вкажіть повну адресу доставки.");
     return;
   }
