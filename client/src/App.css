@@ -3,7 +3,6 @@
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
-  /* Займаємо повну висоту вікна і розкладаємо дітей по вертикалі */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,8 +11,8 @@
 /* ---- Navbar ---- */
 .navbar {
   padding: 0 28px;
-  height: 58px;
-  flex-shrink: 0; /* navbar не стискається */
+  height: var(--navbar-h);
+  flex-shrink: 0;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -28,6 +27,7 @@
   color: var(--text);
   margin-right: 16px;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .nav-link {
@@ -38,6 +38,7 @@
   padding: 6px 14px;
   border-radius: 6px;
   transition: color 0.18s ease, background-color 0.18s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -56,11 +57,60 @@
   user-select: none;
 }
 
-/* ---- Головний контент займає весь залишок висоти ---- */
+/* ---- Main content ---- */
 .main-content {
   flex: 1;
-  min-height: 0; /* ключ — дозволяє дітям скролитись */
+  min-height: 0;
   padding: 20px 16px;
   display: flex;
   flex-direction: column;
+}
+
+/* ========== TABLET (≤ 768px) ========== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+    gap: 4px;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+    margin-right: 8px;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .main-content {
+    padding: 14px 12px;
+  }
+}
+
+/* ========== MOBILE (≤ 480px) ========== */
+@media (max-width: 480px) {
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .main-content {
+    flex: none;
+    padding: 12px 10px;
+  }
+
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+    margin-right: 6px;
+  }
+
+  .nav-link {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
 }
