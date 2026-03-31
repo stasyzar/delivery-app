@@ -127,7 +127,7 @@
 .item-image {
   width: 100px;
   height: 68px;
-  flex-shrink: 0; /* картинка не стискається */
+  flex-shrink: 0;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--border);
@@ -136,7 +136,7 @@
 
 .item-details {
   flex: 1;
-  min-width: 0; /* дозволяє тексту обрізатись, а не розширювати батька */
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -162,6 +162,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
 .quantity-controls button {
@@ -234,6 +235,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .total-sum {
@@ -257,6 +259,7 @@
   letter-spacing: 0.04em;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
@@ -290,4 +293,108 @@
   background-color: var(--border);
   color: var(--text-muted);
   cursor: not-allowed;
+}
+
+/* ========== TABLET (≤ 768px) ========== */
+@media (max-width: 768px) {
+  .order-form {
+    gap: 14px;
+  }
+
+  .user-info {
+    width: 240px;
+    padding: 18px 16px;
+  }
+
+  .user-info h3 {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-group input {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .cart-items {
+    padding: 16px;
+  }
+
+  .item-image {
+    width: 80px;
+    height: 56px;
+  }
+
+  .submit-order-btn {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
+}
+
+/* ========== MOBILE (≤ 480px) ========== */
+@media (max-width: 480px) {
+  .cart-page {
+    flex: none;
+    min-height: 0;
+  }
+
+  .order-form {
+    flex-direction: column;
+    flex: none;
+    gap: 14px;
+  }
+
+  .user-info {
+    width: 100%;
+    overflow-y: visible;
+  }
+
+  .cart-items {
+    overflow: visible;
+    min-height: 0;
+  }
+
+  .items-list {
+    overflow-y: visible;
+    flex: none;
+  }
+
+  .cart-item-card {
+    gap: 10px;
+  }
+
+  .item-image {
+    width: 72px;
+    height: 52px;
+  }
+
+  .item-details h4 {
+    white-space: normal;
+  }
+
+  .quantity-controls {
+    gap: 6px;
+  }
+
+  .cart-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .total-sum {
+    text-align: center;
+    font-size: 1.05rem;
+  }
+
+  .submit-order-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    text-align: center;
+  }
 }
