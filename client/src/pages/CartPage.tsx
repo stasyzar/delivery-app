@@ -51,7 +51,7 @@ const CartPage: React.FC = () => {
   };
 
   try {
-    const response = await axios.post('https://delivery-app-3mdo.onrender.com', order);
+    const response = await axios.post('https://delivery-app-3mdo.onrender.com/api/orders', order);
     alert(response.data.message);
     clearCart();
     setFormData({ name: '', email: '', phone: '', address: '' });
