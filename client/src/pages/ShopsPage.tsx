@@ -146,16 +146,27 @@ const ShopsPage: React.FC = () => {
       : `${selectedCategories.length} categories`;
 
   const renderStars = (rating: number) => {
-    const full = Math.floor(rating);
-    const half = rating % 1 >= 0.5;
-    return (
-      <span className="shop-stars">
-        {'★'.repeat(full)}
-        {half ? '½' : ''}
-        <span className="shop-rating-value">{rating.toFixed(1)}</span>
-      </span>
-    );
-  };
+  if (rating == null) return null;
+  return (
+    <span className="shop-stars">
+      {[1, 2, 3, 4, 5].map(i => {
+        if (rating >= i) {
+          return <span key={i} className="star full">★</span>;
+        } else if (rating >= i - 0.5) {
+          return (
+            <span key={i} className="star half">
+              <span className="star-bg">★</span>
+              <span className="star-fill">★</span>
+            </span>
+          );
+        } else {
+          return (<span key={i} className="star empty">★</span>);
+        }
+      })}
+      <span className="shop-rating-value">{rating.toFixed(1)}</span>
+    </span>
+  );
+};
 
   return (
     <div className="shops-container">
