@@ -500,3 +500,35 @@
     padding: 8px 12px 0;
   }
 }
+
+.star {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.star.full {
+  color: #f5a623;
+}
+
+.star.empty {
+  color: #b1b1b1;
+}
+
+.star.half {
+  position: relative;
+  display: inline-block;
+  color: #b1b1b1;
+}
+
+.star.half .star-bg {
+  color: #b1b1b1;
+}
+
+.star.half .star-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: #f5a623;
+}
