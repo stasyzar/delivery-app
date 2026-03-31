@@ -7,17 +7,14 @@ import { Order } from './models/Order.js';
 
 const app = express();
 
-// Мідлвари
 app.use(cors());
 app.use(express.json());
 
-// Підключення до БД
 const MONGO_URI = process.env.MONGODB_URI as string;
 mongoose.connect(MONGO_URI)
   .then(() => console.log('✅ База даних підключена!'))
   .catch(err => console.error('❌ Помилка підключення:', err));
 
-// 1. Отримати всі магазини з товарами для Shops Page
 app.get('/api/shops', async (req: Request, res: Response) => {
   try {
     const shops = await Shop.find();
@@ -27,7 +24,6 @@ app.get('/api/shops', async (req: Request, res: Response) => {
   }
 });
 
-// 2. Зберегти нове замовлення з Shopping Cart Page
 app.post('/api/orders', async (req: Request, res: Response) => {
   try {
     const newOrder = new Order(req.body);
