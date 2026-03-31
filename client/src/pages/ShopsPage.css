@@ -7,7 +7,7 @@
   min-height: 0;
 }
 
-/* ---- Ліва панель: список магазинів ---- */
+/* ---- Sidebar ---- */
 .sidebar {
   width: 200px;
   flex-shrink: 0;
@@ -42,8 +42,12 @@
   padding-right: 2px;
 }
 
+/* Shop button — flex column to show name + stars */
 .shop-button {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   width: 100%;
   padding: 10px 14px;
   cursor: pointer;
@@ -54,7 +58,7 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text-muted);
-  text-align: center;
+  text-align: left;
   transition: all 0.18s ease;
   flex-shrink: 0;
 }
@@ -73,7 +77,198 @@
   box-shadow: 0 2px 8px rgba(45, 90, 61, 0.3);
 }
 
-/* ---- Права панель: сітка товарів ---- */
+.shop-button.active .shop-rating-value {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.shop-button.active .shop-stars {
+  color: #ffe083;
+}
+
+.shop-stars {
+  font-size: 11px;
+  color: #f5a623;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.shop-rating-value {
+  font-size: 11px;
+  color: #999;
+  font-weight: 500;
+}
+
+/* ---- Rating filter in sidebar ---- */
+.rating-filter-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.rating-trigger {
+  width: 100%;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.rating-menu {
+  width: 100%;
+}
+
+/* ---- No shops message ---- */
+.no-shops-msg {
+  font-size: 13px;
+  color: #aaa;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* ---- Product section (right side) ---- */
+.product-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ---- Filter bar ---- */
+.filter-bar {
+  padding: 12px 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+/* ---- Shared dropdown ---- */
+.category-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger.open {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.dropdown-trigger.active-filter {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+.dropdown-arrow {
+  transition: transform 0.2s;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 190px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  padding: 6px 0;
+  animation: dropdownFadeIn 0.15s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Category items with checkbox */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  transition: background 0.15s;
+  font-family: var(--font-body);
+}
+
+.dropdown-item:hover {
+  background: var(--accent-light);
+}
+
+.dropdown-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.clear-filters {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 6px 16px 4px;
+  padding: 7px 0;
+  background: none;
+  border: 1.5px solid var(--border-hover);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: center;
+  font-family: var(--font-body);
+}
+
+.clear-filters:hover {
+  background: var(--accent-light);
+}
+
+/* Sort / rating items (button-style, no checkbox) */
+.sort-item {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.sort-item.selected {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-light);
+}
+
+/* ---- Product grid ---- */
 .product-grid {
   flex: 1;
   min-height: 0;
@@ -81,6 +276,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 16px;
+  margin-top: 12px;
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -98,7 +294,7 @@
   min-height: 200px;
 }
 
-/* ---- Картка товару ---- */
+/* ---- Product card ---- */
 .product-card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -137,6 +333,15 @@
   text-align: center;
 }
 
+.product-category {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .product-name {
   font-size: 14px;
   font-weight: 600;
@@ -152,7 +357,7 @@
   color: var(--text-muted);
 }
 
-/* ----"add to Cart" ---- */
+/* ---- Add to cart button ---- */
 .add-to-cart-btn {
   padding: 7px 20px;
   cursor: pointer;
@@ -280,6 +485,7 @@
     padding: 12px;
     overflow-y: visible;
     min-height: auto;
+    margin-top: 8px;
   }
 
   .product-card {
@@ -289,154 +495,8 @@
   .product-image {
     height: 160px;
   }
-}
 
-/* === PRODUCT SECTION WRAPPER === */
-.product-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-/* === FILTER BAR === */
-.filter-bar {
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-/* === SHARED DROPDOWN === */
-.category-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-trigger {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: #fff;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  white-space: nowrap;
-}
-
-.dropdown-trigger:hover,
-.dropdown-trigger.open {
-  border-color: #ff6b35;
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-}
-
-/* Highlight sort trigger when a non-default sort is active */
-.dropdown-trigger.active-filter {
-  border-color: #ff6b35;
-  color: #ff6b35;
-  background: #fff4f0;
-}
-
-.dropdown-arrow {
-  transition: transform 0.2s;
-  color: #888;
-}
-
-.dropdown-arrow.rotated {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  min-width: 190px;
-  background: #fff;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-  padding: 6px 0;
-  animation: dropdownFadeIn 0.15s ease;
-}
-
-@keyframes dropdownFadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* === CATEGORY ITEMS (checkbox) === */
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-  transition: background 0.15s;
-}
-
-.dropdown-item:hover {
-  background: #fff4f0;
-}
-
-.dropdown-item input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: #ff6b35;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.clear-filters {
-  display: block;
-  width: calc(100% - 32px);
-  margin: 6px 16px 4px;
-  padding: 7px 0;
-  background: none;
-  border: 1.5px solid #ffcab5;
-  border-radius: 6px;
-  color: #ff6b35;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.15s;
-  text-align: center;
-}
-
-.clear-filters:hover {
-  background: #fff4f0;
-}
-
-/* === SORT ITEMS (radio-style buttons) === */
-.sort-item {
-  width: 100%;
-  background: none;
-  border: none;
-  text-align: left;
-  font-family: inherit;
-}
-
-.sort-item.selected {
-  color: #ff6b35;
-  font-weight: 600;
-  background: #fff4f0;
-}
-
-/* === PRODUCT CATEGORY BADGE === */
-.product-category {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: #ff6b35;
-  margin-bottom: 4px;
+  .filter-bar {
+    padding: 8px 12px 0;
+  }
 }
