@@ -45,7 +45,7 @@ const ShopsPage: React.FC = () => {
   useEffect(() => {
     const fetchShops = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/shops');
+        const response = await axios.get('https://delivery-app-3mdo.onrender.com/api/shops');
         setShops(response.data);
         if (response.data.length > 0) {
           setSelectedShop(response.data[0]);
