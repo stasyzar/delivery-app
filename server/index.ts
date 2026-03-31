@@ -8,7 +8,7 @@ import { Order } from './models/Order.js';
 const app = express();
 
 app.use(cors({
-  origin: 'https://delivery-app-kappa-ivory.vercel.app/'
+  origin: 'https://delivery-app-kappa-ivory.vercel.app'
 }));
 app.use(express.json());
 
