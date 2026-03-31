@@ -26,3 +26,6 @@ https://github.com/stasyzar/delivery-app
 - Product filtering by category (multi-select dropdown)
 - Product sorting (price asc/desc, name A→Z)
 - Shop filtering by rating range (2-3, 3-4, 4-5)
+
+> Note: Backend is hosted on Render free tier. 
+> First load may take up to 60 seconds to wake up the server.
